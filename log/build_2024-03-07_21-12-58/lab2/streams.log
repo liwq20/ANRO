@@ -1,0 +1,42 @@
+[2.926s] Invoking command in '/home/oli/anro_ws/src/lab2': PYTHONPATH=/home/oli/anro_ws/src/build/lab2/prefix_override:/home/oli/anro_ws/src/install/lab2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/lab2 build --build-base /home/oli/anro_ws/src/build/lab2/build install --record /home/oli/anro_ws/src/build/lab2/install.log --single-version-externally-managed
+[3.890s] running egg_info
+[3.891s] creating ../build/lab2/lab2.egg-info
+[3.931s] writing ../build/lab2/lab2.egg-info/PKG-INFO
+[3.932s] writing dependency_links to ../build/lab2/lab2.egg-info/dependency_links.txt
+[3.932s] writing entry points to ../build/lab2/lab2.egg-info/entry_points.txt
+[3.933s] writing requirements to ../build/lab2/lab2.egg-info/requires.txt
+[3.933s] writing top-level names to ../build/lab2/lab2.egg-info/top_level.txt
+[3.936s] writing manifest file '../build/lab2/lab2.egg-info/SOURCES.txt'
+[4.035s] reading manifest file '../build/lab2/lab2.egg-info/SOURCES.txt'
+[4.036s] adding license file 'LICENSE'
+[4.037s] writing manifest file '../build/lab2/lab2.egg-info/SOURCES.txt'
+[4.037s] running build
+[4.038s] running build_py
+[4.038s] creating /home/oli/anro_ws/src/build/lab2/build
+[4.038s] creating /home/oli/anro_ws/src/build/lab2/build/lib
+[4.038s] creating /home/oli/anro_ws/src/build/lab2/build/lib/lab2
+[4.039s] copying lab2/turtle_controller.py -> /home/oli/anro_ws/src/build/lab2/build/lib/lab2
+[4.039s] copying lab2/__init__.py -> /home/oli/anro_ws/src/build/lab2/build/lib/lab2
+[4.039s] running install
+[4.040s] /home/oli/.local/lib/python3.10/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[4.040s]   warnings.warn(
+[4.053s] running install_lib
+[4.095s] creating /home/oli/anro_ws/src/install/lab2/lib/python3.10/site-packages/lab2
+[4.095s] copying /home/oli/anro_ws/src/build/lab2/build/lib/lab2/turtle_controller.py -> /home/oli/anro_ws/src/install/lab2/lib/python3.10/site-packages/lab2
+[4.095s] copying /home/oli/anro_ws/src/build/lab2/build/lib/lab2/__init__.py -> /home/oli/anro_ws/src/install/lab2/lib/python3.10/site-packages/lab2
+[4.096s] byte-compiling /home/oli/anro_ws/src/install/lab2/lib/python3.10/site-packages/lab2/turtle_controller.py to turtle_controller.cpython-310.pyc
+[4.098s] byte-compiling /home/oli/anro_ws/src/install/lab2/lib/python3.10/site-packages/lab2/__init__.py to __init__.cpython-310.pyc
+[4.099s] running install_data
+[4.139s] creating /home/oli/anro_ws/src/install/lab2/share/ament_index
+[4.139s] creating /home/oli/anro_ws/src/install/lab2/share/ament_index/resource_index
+[4.139s] creating /home/oli/anro_ws/src/install/lab2/share/ament_index/resource_index/packages
+[4.140s] copying resource/lab2 -> /home/oli/anro_ws/src/install/lab2/share/ament_index/resource_index/packages
+[4.140s] copying package.xml -> /home/oli/anro_ws/src/install/lab2/share/lab2
+[4.140s] creating /home/oli/anro_ws/src/install/lab2/share/lab2/launch
+[4.140s] copying launch/lab2.launch.py -> /home/oli/anro_ws/src/install/lab2/share/lab2/launch/
+[4.140s] running install_egg_info
+[4.186s] Copying ../build/lab2/lab2.egg-info to /home/oli/anro_ws/src/install/lab2/lib/python3.10/site-packages/lab2-0.0.0-py3.10.egg-info
+[4.188s] running install_scripts
+[4.349s] Installing turtle_controller script to /home/oli/anro_ws/src/install/lab2/lib/lab2
+[4.349s] writing list of installed files to '/home/oli/anro_ws/src/build/lab2/install.log'
+[4.460s] Invoked command in '/home/oli/anro_ws/src/lab2' returned '0': PYTHONPATH=/home/oli/anro_ws/src/build/lab2/prefix_override:/home/oli/anro_ws/src/install/lab2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/lab2 build --build-base /home/oli/anro_ws/src/build/lab2/build install --record /home/oli/anro_ws/src/build/lab2/install.log --single-version-externally-managed
