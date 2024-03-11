@@ -8,11 +8,15 @@ from functools import partial
 
 class TurtleControllerNode(Node):
 
-    def __init__(self, turtle2_name, turtle3_name):
+    def __init__(self):
         super().__init__("turtle_controller")
         self.state = 1
-        self.turtle2_name = turtle2_name
-        self.turtle3_name = turtle3_name
+        self.declare_parameter('turtle2_name', 'default_turtle2')
+        self.declare_parameter('turtle3_name', 'default_turtle3')
+
+        self.turtle2_name = self.get_parameter('turtle2_name').get_parameter_value().string_value
+        self.turtle3_name = self.get_parameter('turtle3_name').get_parameter_value().string_value
+
         self.get_logger().info("Turtle has been started")
         self.rotate_absolute_client = ActionClient(
             self, RotateAbsolute ,"/turtle1/rotate_absolute")
@@ -68,7 +72,7 @@ class TurtleControllerNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = TurtleControllerNode("turtle2", "turtle3")
+    node = TurtleControllerNode()
     node.send_goal_rotate(3.14159)
     rclpy.spin(node)
     rclpy.shutdown()
