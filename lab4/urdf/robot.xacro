@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Dobot">
+
+  <xacro:property name='config_file' value='$(find lab3)/urdf/parameters.yaml'/>
+  <xacro:property name='config_dict' value='${xacro.load_yaml(config_file)}'/>
+
+  <xacro:property name='base_len' value='${config_dict["base"]["len"]}'/>
+  <xacro:property name='base_width' value='${config_dict["base"]["width"]}'/>
+
+  <xacro:property name='body_len' value='${config_dict["body"]["len"]}'/>
+  <xacro:property name='body_rad' value='${config_dict["body"]["rad"]}'/>
+
+  <xacro:property name='arm_len' value='${config_dict["arm"]["len"]}'/>
+  <xacro:property name='arm_rad' value='${config_dict["arm"]["rad"]}'/>
+
+  <xacro:property name='forearm_len' value='${config_dict["forearm"]["len"]}'/>
+  <xacro:property name='forearm_rad' value='${config_dict["forearm"]["rad"]}'/>
+
+  <xacro:property name='wrist_len' value='${config_dict["wrist"]["len"]}'/>
+  <xacro:property name='wrist_rad' value='${config_dict["wrist"]["rad"]}'/>
+
+  <xacro:property name='serwo_len' value='${config_dict["serwo"]["len"]}'/>
+  <xacro:property name='serwo_rad' value='${config_dict["serwo"]["rad"]}'/>
+
+    <material name="grey">
+        <color rgba="0.7 0.7 0.7 1" />
+    </material>
+
+    <material name="green">
+        <color rgba="0 0.8 0 1" />
+    </material>
+
+    <material name="red">
+        <color rgba="0.6 0 0 1" />
+    </material>
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="${base_width} ${base_width} ${base_len}"/>
+      </geometry>
+      <origin xyz="0 0 ${base_len/2}" rpy="0 0 0"/>
+      <material name="green"/>
+    </visual>
+  </link>
+
+  <joint name="front_fixed" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_link"/>
+    <origin xyz="0.6 0 0.5" rpy="0 0 0"/>
+  </joint>
+
+  <link name="front_link">
+    <visual>
+      <geometry>
+        <box size="0.2 0.8 0.1"/>
+      </geometry>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="base_first_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="first_link"/>
+    <origin xyz="0 0 ${base_len}"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="${-pi/2}" upper="${pi/2}" effort="0" velocity="0"/>
+  </joint>
+
+  <link name="first_link">
+    <visual>
+      <geometry>
+        <cylinder radius="${body_rad}" length="${body_len}"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 ${body_len/2}"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="first_second_joint" type="revolute">
+    <origin xyz="0 0 ${body_len}" rpy="${-pi/2} ${-pi/2} 0"/> 
+    <parent link="first_link"/>
+    <child link="second_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="0" upper="${85*pi/180}" effort="0" velocity="0"/>
+  </joint>
+
+  <link name="second_link">
+    <visual>
+      <geometry>
+        <box size="${arm_len} ${arm_rad} ${arm_rad}"/>
+      </geometry>
+      <origin xyz="${arm_len/2} 0 0"/>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="second_third_joint" type="revolute">
+
+    <origin xyz="${arm_len} 0 0" rpy="0 0 ${pi/2}"/>
+    <parent link="second_link"/>
+    <child link="third_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="0" upper="${pi/2}" effort="0" velocity="0"/>
+  </joint>
+
+  <link name="third_link">
+    <visual>
+      <geometry>
+        <box size="${forearm_len} ${forearm_rad} ${forearm_rad}"/>
+      </geometry>
+      <origin xyz="${forearm_len/2} 0 0"/>
+      <material name="green"/>
+    </visual>
+  </link>
+
+  <joint name="third_fourth_joint" type="revolute">
+    <origin xyz="${forearm_len} 0 0" rpy="0 0 0"/>
+    <parent link="third_link"/>
+    <child link="fourth_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="${-pi/2}" upper="${pi/2}" effort="0" velocity="0"/>
+  </joint>
+  
+  <link name="fourth_link">
+    <visual>
+      <geometry>
+        <box size="${wrist_len} ${wrist_rad} ${wrist_rad}"/>
+      </geometry>
+      <origin xyz="${wrist_len/2} 0 0"/>
+      <material name="grey"/>
+    </visual>
+  </link>
+
+  <joint name="fourth_fifth_joint" type="revolute">
+    <origin xyz="${wrist_len} 0 0" rpy="${-pi/2} 0 0"/>
+    <parent link="fourth_link"/>
+    <child link="fifth_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="${-pi/2}" upper="${pi/2}" effort="0" velocity="0"/>
+  </joint>
+  
+  <link name="fifth_link">
+    <visual>
+      <geometry>
+        <box size="${serwo_rad*1.5} ${serwo_rad*5} ${serwo_len}"/>
+      </geometry>
+      <origin xyz="0 0 ${serwo_len/2}"/>
+      <material name="white"/>
+    </visual>    
+  </link>
+
+  <link name="actuator_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.18 0.18 0.18"/>
+      </geometry>
+      <material name="red"/>
+    </visual>    
+  </link>
+
+  <joint name="fifth_actuator_joint" type="fixed">
+    <origin xyz="0 -0.1 0.2" rpy="0 0 0"/>
+    <parent link="fifth_link"/>
+    <child link="actuator_link"/>
+  </joint>
+
+</robot>
